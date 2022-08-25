@@ -1,16 +1,25 @@
 class ContenedorMemoria {
 
-    constructor() {
+    constructor(dto) {
         this.elementos = []
+        this.dto = dto;
+    }
+
+    static getInstance(dto) {
+        if (!instance) {
+            instance = new ContenedorMemoria(dto);
+        }
+        return instance;
     }
 
     listar(id) {
         const elem = this.elementos.find(elem => elem.id == id)
-        return elem || { error: `elemento no encontrado` }
+        return this.dto(elem) || { error: `elemento no encontrado` }
     }
 
     listarAll() {
-        return [...this.elementos]
+        const elementos = [...this.elementos];
+        return this.dto(elementos);
     }
 
     guardar(elem) {
@@ -24,7 +33,7 @@ class ContenedorMemoria {
 
         const newElem = { ...elem, id: newId }
         this.elementos.push(newElem)
-        return newElem
+        return this.dto(newElem);
     }
 
     actualizar(elem) {
@@ -34,7 +43,7 @@ class ContenedorMemoria {
             return { error: `elemento no encontrado` }
         } else {
             this.elementos[index] = newElem
-            return newElem
+            return this.dto(newElem);
         }
     }
 
@@ -43,7 +52,7 @@ class ContenedorMemoria {
         if (index == -1) {
             return { error: `elemento no encontrado` }
         } else {
-            return this.elementos.splice(index, 1)
+            return this.dto(this.elementos.splice(index, 1));
         }
     }
 
