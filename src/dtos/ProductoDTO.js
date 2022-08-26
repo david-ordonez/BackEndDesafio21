@@ -2,7 +2,7 @@ export default class ProductoDTO {
     constructor({title, price, thumbnail}){
         this.title = title;
         this.price = price;
-        this.thumbnail;
+        this.thumbnail = thumbnail;
     }
 }
 

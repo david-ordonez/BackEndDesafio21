@@ -1,4 +1,4 @@
-export default class MensajDto{
+class Author {
     constructor({email,nombre,apellido,edad,alias,avatar}){
         this.email = email;
         this.nombre = nombre;
@@ -9,10 +9,18 @@ export default class MensajDto{
     }
 }
 
+export default class MensajeDTO {
+    constructor({author, text, fecha}){
+        this.author = new Author(author);
+        this.text = text;
+        this.fecha = fecha;
+    }
+}
+
 export function asDto(mensaje){
     if(Array.isArray(mensaje)){
-        return mensaje.map(m => new ProductoDTO(m));
+        return mensaje.map(m => new MensajeDTO(m));
     } else {
-        return new ProductoDTO(mensaje);
+        return new MensajeDTO(mensaje);
     }
 }
