@@ -11,13 +11,13 @@ let dao
 
 switch (opcion) {
     case 'DB':
-        dao = new ContenedorSQL(config.sqlite3,'productos', asDto);
+        dao = ContenedorSQL.getInstance(config.sqlite3,'productos', asDto);
         break
     case 'File':
-        dao = new ContenedorArchivo(rutaArchivoProductos, asDto)   
+        dao = ContenedorArchivo.getInstance(rutaArchivoProductos, asDto)   
         break
     default:
-        dao = new ContenedorMemoria(asDto)
+        dao = ContenedorMemoria.getInstance(asDto)
 }
 
 export default class ProductosDaoFactory {
