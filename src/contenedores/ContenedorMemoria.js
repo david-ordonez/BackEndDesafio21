@@ -1,3 +1,5 @@
+let instance;
+
 class ContenedorMemoria {
 
     constructor(dto) {

@@ -13,6 +13,7 @@ import homeWebRouter from "./routers/web/home.js";
 import infoWebRouter from "./routers/web/info.js";
 import { logRequests,logError,logNotFound } from "./routers/middleware/loggermw.js";
 import productosApiRouter from "./routers/api/productos.js";
+import mensajesApiRouter from "./routers/api/mensajes.js";
 
 import addProductosHandlers from "./routers/ws/productos.js";
 import addMensajesHandlers from "./routers/ws/mensajes.js";
@@ -66,6 +67,7 @@ app.use(passport.session());
 //--------------------------------------------
 // rutas del servidor API REST
 app.use("/", productosApiRouter);
+app.use("/", mensajesApiRouter);
 //--------------------------------------------
 // rutas del servidor web
 app.use("/", homeWebRouter);
